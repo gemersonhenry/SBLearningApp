@@ -1,0 +1,7 @@
+node_modules/
+
+.eslintrc.js
+.pretierrc.js
+babel.config.js
+index.js
+metro.config.js
