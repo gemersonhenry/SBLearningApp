@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { RootStackParamList } from './navigation.config';
 import LoginScreen from '../screens/Login/LoginScreen';
+import RegisterScreen from '../screens/Register/RegisterScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -15,11 +16,11 @@ const MainNavigation = (props: MainNavigationProps) => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LOGIN">
+      <Stack.Navigator initialRouteName="REGISTER">
         {/* LOGIN AND REGISTER */}
         <Stack.Group screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LOGIN" component={LoginScreen} />
-          <Stack.Screen name="REGISTER" component={LoginScreen} />
+          <Stack.Screen name="REGISTER" component={RegisterScreen} />
           <Stack.Screen name="CONFIRM_EMAIL" component={LoginScreen} />
           <Stack.Screen name="RECOVERY_PASSWORD" component={LoginScreen} />
           <Stack.Screen name="NEW_PASSWORD" component={LoginScreen} />
