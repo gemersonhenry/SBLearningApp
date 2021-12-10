@@ -20,6 +20,6 @@ module.exports = {
         'endOfLine': 'auto',
         'no-inline-styles': true
       }
-    ]
+    ],
   },
 };

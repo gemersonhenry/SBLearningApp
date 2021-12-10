@@ -6,6 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { RootStackParamList } from './navigation.config';
 import LoginScreen from '../screens/Login/LoginScreen';
 import RegisterScreen from '../screens/Register/RegisterScreen';
+import ConfirmEmailScreen from '../screens/ConfirmEmail/ConfirmEmailScreen';
+import RecoveryPasswordScreen from '../screens/RecoveryPassword/RecoveryPasswordScreen';
+import NewPasswordScreen from '../screens/NewPassword/NewPasswordScreen';
+import InitialIntroduceScreen from '../screens/InitialIntroduce/InitialIntroduceScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,10 +25,10 @@ const MainNavigation = (props: MainNavigationProps) => {
         <Stack.Group screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LOGIN" component={LoginScreen} />
           <Stack.Screen name="REGISTER" component={RegisterScreen} />
-          <Stack.Screen name="CONFIRM_EMAIL" component={LoginScreen} />
-          <Stack.Screen name="RECOVERY_PASSWORD" component={LoginScreen} />
-          <Stack.Screen name="NEW_PASSWORD" component={LoginScreen} />
-          <Stack.Screen name="INITIAL_INTRODUCE" component={LoginScreen} />
+          <Stack.Screen name="CONFIRM_EMAIL" component={ConfirmEmailScreen} />
+          <Stack.Screen name="RECOVERY_PASSWORD" component={RecoveryPasswordScreen} />
+          <Stack.Screen name="NEW_PASSWORD" component={NewPasswordScreen} />
+          <Stack.Screen name="INITIAL_INTRODUCE" component={InitialIntroduceScreen} />
           <Stack.Screen name="CATEGORIES_SELECTION" component={LoginScreen} />
         </Stack.Group>
 
