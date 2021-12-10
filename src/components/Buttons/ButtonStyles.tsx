@@ -4,8 +4,7 @@ import { PARAGRAPHS } from '../../constants/theme/Paragraphs';
 
 export const BUTTON_STYLES = StyleSheet.create({
   container: {
-    padding: 15,
-    marginBottom: 20,
+    // marginBottom: 20,
     alignItems: 'center',
     borderRadius: 25,
   },
@@ -33,6 +32,9 @@ export const BUTTON_STYLES = StyleSheet.create({
   },
 
   text: {
+    // borderWidth: 1,
+    // borderColor: 'blue',
+    margin: 15,
     fontWeight: 'bold',
     ...PARAGRAPHS['p-0'],
   },

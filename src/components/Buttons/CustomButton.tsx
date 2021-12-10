@@ -6,7 +6,7 @@ import { BUTTON_STYLES } from './ButtonStyles';
 
 interface CustomButtonProps {
   onPress: (event: GestureResponderEvent) => void;
-  text: string;
+  text?: string;
   type?:
     | 'PRIMARY'
     | 'PRIMARY_OUTLINE'
@@ -18,11 +18,26 @@ interface CustomButtonProps {
   fontColor?: string;
   marginHorizontal?: number;
   width?: number;
+  children?: any;
+  marginBottom?: number;
+  marginTop?: number;
+  marginVertical?: number;
 }
 
 const CustomButton = (props: CustomButtonProps) => {
-  const { onPress, text, type, bgColor, fontColor, marginHorizontal, width } =
-    props;
+  const {
+    onPress,
+    text,
+    type,
+    bgColor,
+    fontColor,
+    marginHorizontal,
+    width,
+    children,
+    marginBottom,
+    marginTop,
+    marginVertical,
+  } = props;
 
   const currentType = type ?? 'PRIMARY';
   const currentWidth = !width
@@ -39,16 +54,20 @@ const CustomButton = (props: CustomButtonProps) => {
         BUTTON_STYLES[`container_${currentType}`],
         bgColor ? { backgroundColor: bgColor } : {},
         marginHorizontal ? { marginHorizontal } : {},
-        { width: currentWidth },
+        { width: currentWidth, marginBottom, marginTop, marginVertical },
       ]}>
-      <Text
-        style={[
-          BUTTON_STYLES.text,
-          BUTTON_STYLES[`text_${currentType}`],
-          fontColor ? { color: fontColor } : {},
-        ]}>
-        {text}
-      </Text>
+      {children ? (
+        children
+      ) : (
+        <Text
+          style={[
+            BUTTON_STYLES.text,
+            BUTTON_STYLES[`text_${currentType}`],
+            fontColor ? { color: fontColor } : {},
+          ]}>
+          {text}
+        </Text>
+      )}
     </TouchableHighlight>
   );
 };
