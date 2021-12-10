@@ -7,15 +7,15 @@ export function useKeyboard() {
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      () => {
-        console.log('keyboard has appeared!');
+      event => {
+        console.log('keyboard has appeared! ', event);
         setKeyboardVisible(true);
       },
     );
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      () => {
-        console.log('keyboard has disappeared!');
+      event => {
+        console.log('keyboard has disappeared! ', event);
         setKeyboardVisible(false);
       },
     );

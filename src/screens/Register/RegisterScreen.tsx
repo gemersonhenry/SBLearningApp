@@ -69,7 +69,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
         setValue={setUsername}
         width={contentWidth}
         marginBottom={20}
-        marginTop={isKeyboardOpen ? 40 : 0} // this is applied when keyboard appears
+        marginTop={isKeyboardOpen ? 130 : 0} // this is applied when keyboard appears
         styleType="OUTLINE"
         keyboardType="email-address"
       />
@@ -79,7 +79,6 @@ const RegisterScreen = (props: RegisterScreenProps) => {
         setValue={setEmail}
         width={contentWidth}
         marginBottom={20}
-        marginTop={isKeyboardOpen ? 40 : 0} // this is applied when keyboard appears
         styleType="OUTLINE"
         keyboardType="email-address"
       />
