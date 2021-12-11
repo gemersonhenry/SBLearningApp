@@ -71,6 +71,7 @@ const LoginScreen = (props: LoginScreenProps) => {
         marginTop={isKeyboardOpen ? 40 : 0} // this is applied when keyboard appears
         styleType="OUTLINE"
         keyboardType="email-address"
+        validationType="email"
       />
       <CustomInput01
         label="Password"
@@ -81,19 +82,9 @@ const LoginScreen = (props: LoginScreenProps) => {
         secureType={true}
         styleType="OUTLINE"
       />
-      <CustomButton
-        text="LOGIN"
-        onPress={onLogin}
-        type="PRIMARY"
-        width={contentWidth}
-        marginBottom={20}
-      />
+      <CustomButton text="LOGIN" onPress={onLogin} type="PRIMARY" width={contentWidth} marginBottom={20} />
       <Text style={styles.text}>Or login with</Text>
-      <HorizontalSocialButtons
-        width={contentWidth}
-        withGoogle={onLoginWithGoogle}
-        withFacebook={onLoginWithFacebook}
-      />
+      <HorizontalSocialButtons width={contentWidth} withGoogle={onLoginWithGoogle} withFacebook={onLoginWithFacebook} />
       <Text style={styles.text}>Are you a new user?</Text>
       <CustomLink text="Sign up here!" linkEvent={onSignUp} />
     </SafeAreaView>

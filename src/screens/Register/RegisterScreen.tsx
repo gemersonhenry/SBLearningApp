@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '../../components/Buttons/CustomButton';
@@ -29,21 +29,21 @@ const RegisterScreen = (props: RegisterScreenProps) => {
   const [password, setPassword] = useState('');
   const isKeyboardOpen = useKeyboard();
 
-  const onRegister = () => {
+  const onRegister = useCallback(() => {
     navActions?.navigateTo('HOME01');
-  };
+  }, [navActions]);
 
-  const onRegisterWithGoogle = () => {
+  const onRegisterWithGoogle = useCallback(() => {
     console.log('onLoginWithGoogle');
-  };
+  }, []);
 
-  const onRegisterWithFacebook = () => {
+  const onRegisterWithFacebook = useCallback(() => {
     console.log('onLoginWithFacebook');
-  };
+  }, []);
 
-  const onLogin = () => {
+  const onLogin = useCallback(() => {
     console.log('onSignUp');
-  };
+  }, []);
 
   /**
    * This implementation is for testing a customized behavior
@@ -72,6 +72,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
         marginTop={isKeyboardOpen ? 130 : 0} // this is applied when keyboard appears
         styleType="OUTLINE"
         keyboardType="email-address"
+        validationType="username"
       />
       <CustomInput01
         label="Email"
@@ -81,6 +82,7 @@ const RegisterScreen = (props: RegisterScreenProps) => {
         marginBottom={20}
         styleType="OUTLINE"
         keyboardType="email-address"
+        validationType="email"
       />
       <CustomInput01
         label="Password"

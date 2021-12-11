@@ -5,4 +5,8 @@ export const COLORS = {
   gray: '#6A6A6A',
   primary: '#40C7A7',
   secondary: '#30324D',
+  warning_bg: '#fdd83566',
+  warning: '#fdd835',
+  danger_bg: '#c6282866',
+  danger: '#c62828',
 };

@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, TextInput } from 'react-native';
+import { ValidationType, VALIDATION_ERROR_MESSAGES } from '../../common/error-messages.validation';
+import { InputValidations } from '../../common/input.validation';
 
 import { COLORS } from '../../constants/theme/Colors';
 import { SIZES } from '../../constants/theme/Sizes';
@@ -21,6 +23,7 @@ interface CustomInput01Props {
   marginBottom?: number;
   marginTop?: number;
   keyboardType?: KeyboardTypeOptions;
+  validationType?: ValidationType;
 }
 
 const CustomInput01 = (props: CustomInput01Props) => {
@@ -37,11 +40,24 @@ const CustomInput01 = (props: CustomInput01Props) => {
     marginBottom,
     marginTop,
     keyboardType,
+    validationType,
   } = props;
-  const currentStyleType =
-    styleType && validStylesTypes.includes(styleType as string)
-      ? styleType
-      : 'OUTLINE';
+
+  const [wasTouched, setWasTouched] = useState(false);
+
+  const currentStyleType = styleType && validStylesTypes.includes(styleType as string) ? styleType : 'OUTLINE';
+  const currentErrorMessage = validationType
+    ? !InputValidations[validationType](value)
+      ? VALIDATION_ERROR_MESSAGES[validationType]
+      : ''
+    : '';
+
+  const onBlurEvent = useCallback(() => {
+    setWasTouched(true);
+    if (onBlur) {
+      onBlur();
+    }
+  }, [onBlur]);
 
   return (
     <>
@@ -62,7 +78,7 @@ const CustomInput01 = (props: CustomInput01Props) => {
           styles[`input_${currentStyleType}`],
           {
             width,
-            marginBottom,
+            marginBottom: currentErrorMessage && wasTouched ? 5 : marginBottom,
             paddingHorizontal: currentStyleType === 'UNDERLINE' ? 0 : 15,
           },
         ]}
@@ -70,15 +86,18 @@ const CustomInput01 = (props: CustomInput01Props) => {
         value={value}
         onChangeText={setValue}
         onFocus={onFocus}
-        onBlur={onBlur}
+        onBlur={onBlurEvent}
         secureTextEntry={secureType}
         keyboardType={keyboardType}
       />
+      {currentErrorMessage && wasTouched ? (
+        <Text style={[styles.error_message, { marginBottom, width }]}>{currentErrorMessage}</Text>
+      ) : null}
     </>
   );
 };
 
-export default CustomInput01;
+export default memo(CustomInput01);
 
 const styles = StyleSheet.create({
   container: {},
@@ -100,5 +119,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderColor: COLORS.lightgray,
     borderRadius: 10,
+  },
+  error_message: {
+    color: COLORS.danger,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+    textAlign: 'left',
   },
 });
