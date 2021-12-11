@@ -9,8 +9,10 @@ import HorizontalSocialButtons from '../../components/SocialButtons/HorizontalSo
 import { SCREEN } from '../../constants/theme/Sizes';
 import { TITLES } from '../../constants/theme/Titles';
 import { useKeyboard } from '../../hooks/useKeyboard';
+import { IStorageUser } from '../../models/localstorage.model';
 import { NavigationScreenProps } from '../../navigation/navigation.interface';
 import { NavigationActions } from '../../navigation/NavigationActions';
+import { LocalStorage } from '../../storage/LocalStorage';
 
 /**
  * settings for main container
@@ -30,8 +32,13 @@ const RegisterScreen = (props: RegisterScreenProps) => {
   const isKeyboardOpen = useKeyboard();
 
   const onRegister = useCallback(() => {
+    const user = {
+      email: email,
+      username: username,
+    } as IStorageUser;
+    LocalStorage.setItem('user', user);
     navActions?.navigateTo('HOME01');
-  }, [navActions]);
+  }, [navActions, email, username]);
 
   const onRegisterWithGoogle = useCallback(() => {
     console.log('onLoginWithGoogle');
@@ -42,8 +49,8 @@ const RegisterScreen = (props: RegisterScreenProps) => {
   }, []);
 
   const onLogin = useCallback(() => {
-    console.log('onSignUp');
-  }, []);
+    navActions?.navigateTo('LOGIN');
+  }, [navActions]);
 
   /**
    * This implementation is for testing a customized behavior

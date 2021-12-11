@@ -41,7 +41,7 @@ const LoginScreen = (props: LoginScreenProps) => {
   };
 
   const onSignUp = () => {
-    console.log('onSignUp');
+    navActions?.navigateTo('REGISTER');
   };
 
   /**
