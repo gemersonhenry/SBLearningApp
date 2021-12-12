@@ -20,7 +20,7 @@ const MainNavigation = (props: MainNavigationProps) => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="REGISTER">
+      <Stack.Navigator initialRouteName="INITIAL_INTRODUCE">
         {/* LOGIN AND REGISTER */}
         <Stack.Group screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LOGIN" component={LoginScreen} />

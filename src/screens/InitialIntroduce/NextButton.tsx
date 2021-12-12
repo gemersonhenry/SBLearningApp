@@ -2,9 +2,13 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import Svg, { G, Circle } from 'react-native-svg';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Logger } from '../../helpers/logger';
 
 interface NextButtonProps {
   percentage: number;
+  index: number;
+  numberOfSlides: number;
+  onPress?: () => void;
 }
 
 const SQUARE_SIZE = 128;
@@ -13,7 +17,8 @@ const ICON_PADDING = 10;
 const TOP_LEFT = SQUARE_SIZE / 2 - ICON_PADDING - ICON_SIZE / 2;
 
 const NextButton = (props: NextButtonProps) => {
-  const { percentage } = props;
+  Logger.log('NextButton');
+  const { percentage, index, numberOfSlides, onPress } = props;
   const size = SQUARE_SIZE;
   const strokeWidth = 2;
   const center = size / 2;
@@ -26,7 +31,7 @@ const NextButton = (props: NextButtonProps) => {
 
   const animation = useCallback(
     (toValue: number) => {
-      // console.log('toValue: ', toValue);
+      console.log('progressAnimation: ', progressAnimation);
       return Animated.timing(progressAnimation, {
         toValue,
         duration: 250,
@@ -36,15 +41,23 @@ const NextButton = (props: NextButtonProps) => {
     [progressAnimation],
   );
 
+  const onPressNextBtn = useCallback(() => {
+    if (index < numberOfSlides - 1) {
+      console.log('onPressNextBtn');
+      if (onPress) {
+        onPress();
+      }
+    }
+  }, [index, numberOfSlides, onPress]);
+
   useEffect(() => {
     animation(percentage);
   }, [animation, percentage]);
 
   useEffect(() => {
     const listenerId = progressAnimation.addListener(value => {
-      // console.log('value: ', value);
-      const strokeDashoffset =
-        circunference - (circunference * value.value) / 100;
+      console.log('value: ', value);
+      const strokeDashoffset = circunference - (circunference * value.value) / 100;
       if (progressRef?.current) {
         (progressRef.current as any).setNativeProps({ strokeDashoffset });
       }
@@ -52,19 +65,13 @@ const NextButton = (props: NextButtonProps) => {
     return () => {
       progressAnimation.removeListener(listenerId);
     };
-  });
+  }, [circunference, progressAnimation]);
 
   return (
     <View style={styles.container}>
       <Svg width={size} height={size}>
         <G rotation={-90} origin={center}>
-          <Circle
-            stroke="#E6E7E8"
-            cx={center}
-            cy={center}
-            r={radius}
-            strokeWidth={strokeWidth}
-          />
+          <Circle stroke="#E6E7E8" cx={center} cy={center} r={radius} strokeWidth={strokeWidth} />
           <Circle
             ref={progressRef}
             stroke="#F4338F"
@@ -77,7 +84,7 @@ const NextButton = (props: NextButtonProps) => {
           />
         </G>
       </Svg>
-      <TouchableOpacity style={styles.button} activeOpacity={0.6}>
+      <TouchableOpacity style={styles.button} activeOpacity={0.6} onPress={onPressNextBtn}>
         <AntDesign name="arrowright" size={ICON_SIZE} color="#FFFFFF" />
       </TouchableOpacity>
     </View>

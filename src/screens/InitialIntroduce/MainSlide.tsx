@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-import { screenWidth } from '../../utils/dimensions.util';
+import { SCREEN } from '../../constants/theme/Sizes';
+import { Logger } from '../../helpers/logger';
 import { ISlide } from './slides.interface';
 
 interface MainSlideProps {
@@ -10,8 +11,9 @@ interface MainSlideProps {
 }
 
 const MainSlide = (props: MainSlideProps) => {
+  Logger.log('MainSlide');
   const { slide } = props;
-
+  const screenWidth = SCREEN.width;
   return (
     <View style={[styles.container, { width: screenWidth }]}>
       <Image

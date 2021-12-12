@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+// import { StyleSheet } from 'react-native';
+import OnboardingScreen from './OnboardingScreen';
 
 interface InitialIntroduceScreenProps {}
 
 const InitialIntroduceScreen = (props: InitialIntroduceScreenProps) => {
   const {} = props;
-  return (
-    <View style={styles.container}>
-      <Text>InitialIntroduceScreen</Text>
-    </View>
-  );
+  return <OnboardingScreen />;
 };
 
 export default InitialIntroduceScreen;
 
-const styles = StyleSheet.create({
-  container: {},
-});
+// const styles = StyleSheet.create({
+//   container: {},
+// });

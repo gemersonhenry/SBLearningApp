@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
-import { screenWidth } from '../../utils/dimensions.util';
+import { SCREEN } from '../../constants/theme/Sizes';
+import { Logger } from '../../helpers/logger';
 
 import { ISlide } from './slides.interface';
 
@@ -13,15 +14,14 @@ interface PaginatorProps {
 }
 
 const Paginator = (props: PaginatorProps) => {
+  Logger.log('Paginator');
   const { slides, scrollX } = props;
+  const screenWidth = SCREEN.width;
+
   return (
     <View style={styles.container}>
       {slides.map((_, index) => {
-        const inputRange = [
-          (index - 1) * screenWidth,
-          index * screenWidth,
-          (index + 1) * screenWidth,
-        ];
+        const inputRange = [(index - 1) * screenWidth, index * screenWidth, (index + 1) * screenWidth];
 
         const dotWidth = scrollX.interpolate({
           inputRange,
@@ -34,18 +34,13 @@ const Paginator = (props: PaginatorProps) => {
           outputRange: [DOT_OPACITY, 1, DOT_OPACITY],
           extrapolate: 'clamp', // al quitar este atributo sale un comportamiento interesante
         });
-        return (
-          <Animated.View
-            style={[styles.dot, { width: dotWidth, opacity: dotOpacity }]}
-            key={index.toString()}
-          />
-        );
+        return <Animated.View style={[styles.dot, { width: dotWidth, opacity: dotOpacity }]} key={index.toString()} />;
       })}
     </View>
   );
 };
 
-export default Paginator;
+export default memo(Paginator);
 
 const styles = StyleSheet.create({
   container: {
