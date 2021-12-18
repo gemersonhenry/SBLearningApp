@@ -14,28 +14,21 @@ const HorizontalSocialButtons = (props: HorizontalSocialButtonsProps) => {
 
   const numberOfButtons = 2;
   const distanceBetweenButtons = 20;
-  const buttonWidth =
-    (width - (numberOfButtons - 1) * distanceBetweenButtons) / numberOfButtons;
+  const buttonWidth = (width - (numberOfButtons - 1) * distanceBetweenButtons) / numberOfButtons;
 
   return (
     <View style={[styles.container, { width }]}>
       {/* LOGIN WITH GOOGLE */}
       <CustomButton onPress={withGoogle} width={buttonWidth} type="TERTIARY">
         <View style={[styles.textWrapper, { width: buttonWidth }]}>
-          <Image
-            source={require('../../assets/images/social-media/google-letter.png')}
-            style={[styles.image]}
-          />
+          <Image source={require('../../assets/images/social-media/google-letter.png')} style={[styles.image]} />
           <Text style={styles.text}>Google</Text>
         </View>
       </CustomButton>
       {/* LOGIN WITH FACEBOOK */}
       <CustomButton onPress={withFacebook} width={buttonWidth} type="TERTIARY">
         <View style={[styles.textWrapper, { width: buttonWidth }]}>
-          <Image
-            source={require('../../assets/images/social-media/facebook-letter.png')}
-            style={[styles.image]}
-          />
+          <Image source={require('../../assets/images/social-media/facebook-letter.png')} style={[styles.image]} />
           <Text style={styles.text}>Facebook</Text>
         </View>
       </CustomButton>

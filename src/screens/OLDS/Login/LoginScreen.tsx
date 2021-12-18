@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import CustomButton from '../../components/Buttons/CustomButton';
-import CustomLink from '../../components/Buttons/CustomLink';
-import CustomInput01 from '../../components/Inputs/CustomInput01';
-import HorizontalSocialButtons from '../../components/SocialButtons/HorizontalSocialButtons';
-import { SCREEN } from '../../constants/theme/Sizes';
-import { TITLES } from '../../constants/theme/Titles';
-import { useKeyboard } from '../../hooks/useKeyboard';
-import { NavigationScreenProps } from '../../navigation/navigation.interface';
-import { NavigationActions } from '../../navigation/NavigationActions';
+import CustomButton from '../../../components/Buttons/CustomButton';
+import CustomLink from '../../../components/Buttons/CustomLink';
+import CustomInput01 from '../../../components/Inputs/CustomInput01';
+import HorizontalSocialButtons from '../../../components/SocialButtons/HorizontalSocialButtons';
+import { SCREEN } from '../../../constants/theme/Sizes';
+import { TITLES } from '../../../constants/theme/Titles';
+import { useKeyboard } from '../../../hooks/useKeyboard';
+import { NavigationScreenProps } from '../../../navigation/navigation.interface';
+import { NavigationActions } from '../../../navigation/NavigationActions';
 
 /**
  * settings for main container
@@ -41,7 +41,7 @@ const LoginScreen = (props: LoginScreenProps) => {
   };
 
   const onSignUp = () => {
-    navActions?.navigateTo('REGISTER');
+    navActions?.navigateTo('REGISTER_WITH');
   };
 
   /**

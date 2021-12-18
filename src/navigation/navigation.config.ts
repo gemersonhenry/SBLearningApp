@@ -28,11 +28,6 @@ export type RootStackParamList = {
   RECOVERY_PASSWORD_BY_PHONE: undefined;
   NEW_PASSWORD: undefined;
 
-  // LOGIN AND REGISTER
-  LOGIN: undefined; // PENDING TO DELETE
-  REGISTER: undefined; // PENDING TO DELETE
-  RECOVERY_PASSWORD: undefined; // PENDING TO DELETE
-
   // BUSINESS
   HOME01: undefined;
   HOME02: undefined;

@@ -7,11 +7,7 @@ export class NavigationManager {
    * @param route: a valid route name
    * @param reset: when is true the stack will be clean and route will be the new first route
    */
-  static navigateTo(
-    navigation: NavigationProp<RootStackParamList>,
-    route: keyof RootStackParamList,
-    reset = false,
-  ) {
+  static navigateTo(navigation: NavigationProp<RootStackParamList>, route: keyof RootStackParamList, reset = false) {
     if (reset) {
       navigation.reset({
         index: 0,
